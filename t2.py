@@ -20,7 +20,7 @@ class MRLongestWord(MRJob):
 
     def reducer(self, _, words):
         max_word = max(words, key=lambda w: len(w))
-        yield max_word, len(max_word)
+        yield max_word, str(len(max_word))
 
 
 class MRMostUsedWord(MRJob):
