@@ -15,7 +15,7 @@ class MRLongestWord(MRJob):
         for word in WORD_RE.findall(line):
             yield None, word
 
-    def combiner(self, _, word):
+    def combiner(self, _, words):
         yield None, max(words, key=lambda w: len(w))
 
     def reducer(self, _, words):
