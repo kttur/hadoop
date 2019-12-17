@@ -13,7 +13,7 @@ class MRAverageWordLength(MRJob):
 
     def reducer(self, _, lengths):
 	    total = sum(lengths)
-        yield ("avg len: %f" % float(total[0])/total[1], "total words: %i" % total[1])
+        yield (float(total[0])/total[1], total[1])
 		
 		
 if __name__ == "__main__":
