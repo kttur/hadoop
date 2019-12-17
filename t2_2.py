@@ -10,8 +10,8 @@ class MRAverageWordLength(MRJob):
     def mapper(self, _, line):
         for word in WORD_RE.findall(line):
             yield None, (len(word), 1)
-			
-	def combiner(self, _, lengths):
+            
+    def combiner(self, _, lengths):
         yield None, sum(lengths)
 
     def reducer(self, _, lengths):
