@@ -18,7 +18,7 @@ class MRUppercaseWords10(MRJob):
             if c:
                 upper += 1
         if total >= 10 and float(upper)/total >= 0.5:
-            yield word, str(total, upper)
+            yield word, str((total, upper))
 
 
 if __name__ == "__main__":
