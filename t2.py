@@ -13,13 +13,13 @@ class MRLongestWord(MRJob):
 
     def mapper(self, _, line):
         for word in WORD_RE.findall(line):
-            yield None, (len(word), word)
+            yield None, word
 
-    def combiner(self, _, words):
-        yield max(words)
+    def combiner(self, _, word):
+        yield None, max(words, key=lambda w: len(w))
 
-    def reducer(self, words):
-        yield str(max(words)[1])
+    def reducer(self, _, words):
+        yield max(words, key=lambda w: len(w))
 
 
 class MRMostUsedWord(MRJob):
