@@ -19,7 +19,8 @@ class MRLongestWord(MRJob):
         yield None, max(words, key=lambda w: len(w))
 
     def reducer(self, _, words):
-        yield max(words, key=lambda w: len(w))
+        max_word = max(words, key=lambda w: len(w))
+		yield max_word, len(max_word)
 
 
 class MRMostUsedWord(MRJob):
