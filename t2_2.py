@@ -13,7 +13,7 @@ class MRAverageWordLength(MRJob):
             yield None, len(word)
 
     def reducer(self, _, lengths):
-        yield mean(lengths)
+        yield "Mean word length", str(mean(lengths))
 
 
 if __name__ == "__main__":
