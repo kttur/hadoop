@@ -6,7 +6,7 @@ class MROneDotAbbr(MRJob):
 
     PATTERN_RE = re.compile(r'(?m)( |^)[a-zA-Zа-яА-Я]+\.[,;:"?!]?( |$)"?\w?')
     ABBR_RE = re.compile(r"[a-zA-Zа-яА-Я]+\.")
-    THRESHOLD = 0.7
+    THRESHOLD = 0.3
 
     def mapper(self, _, line):
         for match in self.PATTERN_RE.findall(line):
