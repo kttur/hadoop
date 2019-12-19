@@ -4,22 +4,23 @@ import re
 
 class MROneDotAbbr(MRJob):
 
-    PATTERN_RE = re.compile(r'( |^)\w+\.[,;:"?!]?( |$)"?\w?')
-    ABBR_RE = re.compile(r'\w+\.')
-    REMOVED_SYMBOLS = re.compile('[,;:"?!]+')
+    PATTERN_RE = re.compile(r"( |^)[a-zA-Zа-яА-Я]+\.[,;:\"?!]?( |$)\"?\w?")
+    ABBR_RE = re.compile(r"\w+\.")
+    REMOVED_SYMBOLS = re.compile("[,;:\"?!]+")
+    THRESHOLD = 0.7
 
     def mapper(self, _, line):
         for match in self.PATTERN_RE.findall(line):
-            yield self.ABBR_RE.search(match).lower(), match[-1].isupper()
+            yield self.ABBR_RE.search(match).lower(), match[-1].islower()
 
-    def reducer(self, word, upper_counters):
-        total, upper = 0, 0
-        for c in upper_counters:
+    def reducer(self, word, lower_counters):
+        total, lower = 0, 0
+        for c in lower_counters:
             total += 1
             if c:
-                upper += 1
-        if float(upper)/total <= 0.5:
-            yield word, str((total, upper))
+                lower += 1
+        if float(lower)/total >= self.THRESHOLD:
+            yield word, str((total, lower))
 
 
 if __name__ == "__main__":
