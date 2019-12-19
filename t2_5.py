@@ -4,7 +4,7 @@ import re
 
 class MROneDotAbbr(MRJob):
 
-    PATTERN_RE = re.compile(r"( |^)[a-zA-Zа-яА-Я]+\.[,;:\"?!]?( |$)\"?\w?")
+    PATTERN_RE = re.compile(r'( |^)[a-zA-Zа-яА-Я]+\.[,;:"?!]?( |$)"?\w?')
     ABBR_RE = re.compile(r"[a-zA-Zа-яА-Я]+\.")
     REMOVED_SYMBOLS = re.compile("[,;:\"?!]+")
     THRESHOLD = 0.7
