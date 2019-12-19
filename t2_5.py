@@ -9,9 +9,9 @@ class MROneDotAbbr(MRJob):
     REMOVED_SYMBOLS = re.compile('[,;:"?!]+')
 
     def mapper(self, _, line):
-        for match in PATTERN_RE.findall(line):
+        for match in self.PATTERN_RE.findall(line):
             clean_match = re.sub(r'[,;:"?!]+', '', match)
-            yield ABBR_RE.search(match).lower(), clean_match[-1].isupper()
+            yield self.ABBR_RE.search(match).lower(), clean_match[-1].isupper()
 
     def reducer(self, word, upper_counters):
         total, upper = 0, 0
