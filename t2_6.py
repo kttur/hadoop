@@ -5,8 +5,8 @@ import re
 
 class MROneLetterAbbr(MROneDotAbbr):
 
-    PATTERN_RE = re.compile(r'( |^)(\w\.)+[,;:"?!]?( |$)"?\w?')
-    ABBR_RE = re.compile(r'(\w\.)+')
+    PATTERN_RE = re.compile(r'(?: |^)(?:\w\.)+[,;:"?!]?(?: |$)\w?')
+    ABBR_RE = re.compile(r'(?:\w\.)+')
 
 
 if __name__ == "__main__":

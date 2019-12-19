@@ -1,12 +1,14 @@
 from mrjob.job import MRJob
+from mrjob.protocol import TextProtocol
 import re
 
 
 class MROneDotAbbr(MRJob):
 
-    PATTERN_RE = re.compile(r'(?m)( |^)[a-zA-Zа-яА-Я]+\.[,;:"?!]?( |$)"?\w?')
-    ABBR_RE = re.compile(r"[a-zA-Zа-яА-Я]+\.")
-    THRESHOLD = 0.3
+    OUTPUT_PROTOCOL = TextProtocol
+    PATTERN_RE = re.compile(r'(?: |^)\w+\.[,;:?!]?(?: |$)\w?')
+    ABBR_RE = re.compile(r"\w+\.")
+    THRESHOLD = 0.55
 
     def mapper(self, _, line):
         for match in self.PATTERN_RE.findall(line):
@@ -21,7 +23,7 @@ class MROneDotAbbr(MRJob):
             total += 1
             if c:
                 lower += 1
-        if float(lower)/total >= self.THRESHOLD:
+        if total > 10 and float(lower)/total >= self.THRESHOLD:
             yield word, str((total, lower))
 
 
