@@ -11,9 +11,9 @@ class MROneDotAbbr(MRJob):
 
     def mapper(self, _, line):
         for match in self.PATTERN_RE.findall(line):
-            if match is str:
+            if isinstance(match, str):
                 for abbr in self.ABBR_RE.findall(match):
-                    if abbr is str:
+                    if isinstance(abbr, str):
                         yield abbr.lower(), match[-1].islower()
 
     def reducer(self, word, lower_counters):
