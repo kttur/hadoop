@@ -2,3 +2,4 @@ wiki.txt
 wiki_trunc.txt
 /.idea/
 /results/
+__pycache__
