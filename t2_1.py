@@ -1,3 +1,5 @@
+# 1. Напишите программу, которая находит самое длинное слово.
+
 from mrjob.job import MRJob
 from mrjob.protocol import TextProtocol
 import re

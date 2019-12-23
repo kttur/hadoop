@@ -1,3 +1,5 @@
+# 3. Напишите программу, которая находит самое частоупотребляемое слово, состоящее из латинских букв.
+
 from mrjob.job import MRJob
 from mrjob.protocol import TextProtocol
 from mrjob.step import MRStep

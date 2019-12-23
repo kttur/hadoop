@@ -1,3 +1,5 @@
+# 5. Напишите программу, которая с помощью статистики определяет устойчивые сокращения вида `пр.`, `др.`, ...
+
 from mrjob.job import MRJob
 from mrjob.protocol import TextProtocol
 import re

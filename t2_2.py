@@ -1,3 +1,5 @@
+# 2. Напишите программу, которая находит среднюю длину слов. 
+
 from mrjob.job import MRJob
 from statistics import mean
 import re
