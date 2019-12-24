@@ -1,6 +1,7 @@
 # 4. Все слова, которые более чем в половине случаев начинаются с большой буквы и встречаются больше 10 раз.
 
 from mrjob.job import MRJob
+from mrjob.protocol import TextProtocol
 import re
 
 
@@ -8,6 +9,8 @@ WORD_RE = re.compile(r"\w+")
 
 
 class MRUppercaseWords10(MRJob):
+
+    OUTPUT_PROTOCOL = TextProtocol
 
     def mapper(self, _, line):
         for word in WORD_RE.findall(line):
